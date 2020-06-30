@@ -4,13 +4,22 @@ service:
 plugins:
   - serverless-bundle
   - serverless-pseudo-parameters
+  - serverless-dotenv-plugin
 
 provider:
   name: aws
   runtime: nodejs12.x
   memorySize: 256
-  region: ap-south-1
+  region: ${env:REGION}
   stage: ${opt:stage, 'dev'}
+  iamRoleStatements:
+    - ${file(IAM/AuctionsTableIAM.yml):AuctionsTableIAM}
+
+
+resources:
+  Resources:
+    AuctionsTable: ${file(Resources/AuctionsTable.yml):AuctionsTable}
+
 
 functions:
   createAuction:
@@ -19,6 +28,14 @@ functions:
       - http:
           method: POST
           path: /auction
+
 custom:
+  dotenv:
+    path: ./.env
+    basePath: ./
+    logging: false
+    include:
+      - DYNAMODB_TABLE
+      - REGION
   bundle:
-    linting: true
+    linting: false
