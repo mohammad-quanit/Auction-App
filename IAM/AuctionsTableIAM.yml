@@ -3,4 +3,4 @@ AuctionsTableIAM:
   Action:
     - dynamodb:PutItem
   Resource:
-    - arn:aws:dynamodb:${self:provider.region}:174056466027:table/${env:DYNAMODB_TABLE}
+    - ${self:custom.AuctionsTable.arn}

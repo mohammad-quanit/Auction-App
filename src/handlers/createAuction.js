@@ -13,7 +13,7 @@ async function createAuction(event, context) {
     createdAt: new Date().toISOString(),
   };
 
-  console.log('this is auction data.....', auction)
+  console.log(process.env.DYNAMODB_TABLE);
 
   await dynamodb
     .put({
