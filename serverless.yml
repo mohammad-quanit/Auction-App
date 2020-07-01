@@ -17,11 +17,9 @@ provider:
   iamRoleStatements:
     - ${file(IAM/AuctionsTableIAM.yml):AuctionsTableIAM}
 
-
 resources:
   Resources:
     AuctionsTable: ${file(Resources/AuctionsTable.yml):AuctionsTable}
-
 
 functions:
   createAuction:
@@ -30,6 +28,20 @@ functions:
       - http:
           method: POST
           path: /auction
+
+  getAuctions:
+    handler: src/handlers/getAuctions.handler
+    events:
+      - http:
+          method: GET
+          path: /auctions
+
+  getAuction:
+    handler: src/handlers/getAuction.handler
+    events:
+      - http:
+          method: GET
+          path: /auction/{id}
 
 custom:
   AuctionsTable:
