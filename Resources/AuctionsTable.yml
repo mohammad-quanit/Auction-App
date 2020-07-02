@@ -22,3 +22,5 @@ AuctionsTable:
             KeyType: RANGE
         Projection:
           ProjectionType: ALL
+    StreamSpecification:
+      StreamViewType: "NEW_IMAGE"
