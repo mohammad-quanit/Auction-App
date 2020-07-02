@@ -1,7 +1,7 @@
 {
   "name": "auction-service",
   "version": "1.0.0",
-  "description": "Codingly template for Serverless Framework projects",
+  "description": "Template By Quanit for Serverless Framework projects",
   "author": "Mohammad Quanit <muhammadquanit@gmail.com>",
   "license": "MIT",
   "devDependencies": {
